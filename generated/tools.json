@@ -57,6 +57,24 @@
       "mcpAlias": null
     },
     {
+      "name": "ask_founder",
+      "surface": "commander",
+      "category": "coordination",
+      "readWrite": "write",
+      "requiredRole": "team_member",
+      "description": "Compatibility alias for ask_human. Recipient routing still follows the task's responsible human and reviewer.",
+      "mcpAlias": null
+    },
+    {
+      "name": "ask_human",
+      "surface": "commander",
+      "category": "coordination",
+      "readWrite": "write",
+      "requiredRole": "team_member",
+      "description": "Ask the responsible human a durable task question. The same question appears in Commander, Inbox, Task Work, Workspace, and the source Discussion. The run waits briefly, then parks cleanly and continues once answered.",
+      "mcpAlias": null
+    },
+    {
       "name": "assign_task",
       "surface": "commander",
       "category": "action",
@@ -764,7 +782,7 @@
       "category": "memory",
       "readWrite": "write",
       "requiredRole": "team_member",
-      "description": "Create a memory item (status='pending', founder approves per Critical Rule #6) and enqueue it for RAG indexing. Use for capturing important knowledge discovered during task execution that should be reviewed and promoted to company memory. For temporary working notes scoped only to this agent, prefer the MCP memory.retain tool with scopeToSelf=true and layer=working.",
+      "description": "Create a memory item (status='pending', founder approves per Critical Rule #6) and enqueue it for RAG indexing. Use for capturing important knowledge discovered during task execution that should be reviewed and promoted to company memory. layer='domain' requires a departmentId; layer='identity' must not have one. For temporary working notes scoped only to this agent, prefer the MCP memory.retain tool with scopeToSelf=true and layer=working.",
       "mcpAlias": null
     },
     {
@@ -800,7 +818,16 @@
       "category": "ask",
       "readWrite": "write",
       "requiredRole": null,
-      "description": "Ask the founder a question and block (up to ~5 min) for the answer. For org/heartbeat task-execution agents during an active run only. Surfaces in the Inbox as a question the founder answers (free-text, or one of your options). On timeout the run is parked and you get {answered:false, status:\"parked\"} — stop gracefully; do not retry.",
+      "description": "Compatibility alias for ask_human. Recipient routing follows the task's responsible human, reviewer, then founder fallback.",
+      "mcpAlias": null
+    },
+    {
+      "name": "ask_human",
+      "surface": "mcp",
+      "category": "ask",
+      "readWrite": "write",
+      "requiredRole": null,
+      "description": "Ask the responsible human a durable task question and block (up to ~5 min) for the answer. For org/heartbeat task-execution agents during an active run only. Surfaces in Commander and Inbox as a question the recipient answers (free-text, or one of your options). On timeout the run is parked and you get {answered:false, status:\"parked\"} — stop gracefully; do not retry.",
       "mcpAlias": null
     },
     {
@@ -1088,7 +1115,7 @@
       "category": "document",
       "readWrite": "write",
       "requiredRole": null,
-      "description": "Create or update the task's document (markdown). Existing document artifacts receive a new immutable version; otherwise an artifact is created and linked to the task.",
+      "description": "Create or update the task's document (markdown). If the task already has a document artifact, appends a new immutable version; otherwise creates an artifact of type 'document' and links it to the task. Maps AoA's upsert-issue-document to AoA's artifact subsystem.",
       "mcpAlias": null
     },
     {

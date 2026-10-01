@@ -2,14 +2,15 @@
 
 <!-- GENERATED — DO NOT EDIT. Run `bun scripts/gen-tools-md.ts`. Source: generated/tools.json -->
 
-37 tools exposed over the authenticated MCP endpoint, RBAC-scoped. Family is derived from the exported handler maps in `server/src/mcp/tools/index.ts` (read/write/document/approval/skill/ask).
+38 tools exposed over the authenticated MCP endpoint, RBAC-scoped. Family is derived from the exported handler maps in `server/src/mcp/tools/index.ts` (read/write/document/approval/skill/ask).
 
 | Tool | R/W | Family | What it does |
 |------|-----|--------|--------------|
 | `add-approval-comment` | write | approval | Add a comment to an approval. Any role may comment on approvals they can see. |
 | `add-task-comment` | write | write | Add a comment to a task the caller can access |
 | `approval-decision` | write | approval | Approve, reject, request revision, or resubmit an approval. Founders + team leads only. Team leads limited to approvals with at least one task in their scope. |
-| `ask_founder` | write | ask | Ask the founder a question and block (up to ~5 min) for the answer. For org/heartbeat task-execution agents during an active run only. Surfaces in the Inbox as a question the founder answers (free-text, or one of your options). On timeout the run is parked and you get {answered:false, status:"parked"} — stop gracefully; do not retry. |
+| `ask_founder` | write | ask | Compatibility alias for ask_human. Recipient routing follows the task's responsible human, reviewer, then founder fallback. |
+| `ask_human` | write | ask | Ask the responsible human a durable task question and block (up to ~5 min) for the answer. For org/heartbeat task-execution agents during an active run only. Surfaces in Commander and Inbox as a question the recipient answers (free-text, or one of your options). On timeout the run is parked and you get {answered:false, status:"parked"} — stop gracefully; do not retry. |
 | `attach-artifact-version` | write | write | Add a new immutable version to an artifact |
 | `create-approval` | write | approval | Create a new approval request. Founders + team leads only. Team leads must link at least one task from their scope. |
 | `create-task` | write | write | Create a task directly in the caller's company (RBAC scoped). Does NOT route through Discussion; use debrief-push for unstructured content extraction (Decision #14 revised) |
@@ -41,5 +42,5 @@
 | `unlink-task-approval` | write | approval | Unlink an approval from a task. Founders + team leads only. |
 | `update-task` | write | write | Update a task's fields (title, description, status, priority, assignee, etc.) with RBAC checks |
 | `update-task-status` | write | write | Update a task status with permission checks |
-| `upsert-task-document` | write | document | Create or update the task's document (markdown). Existing document artifacts receive a new immutable version; otherwise an artifact is created and linked to the task. |
+| `upsert-task-document` | write | document | Create or update the task's document (markdown). If the task already has a document artifact, appends a new immutable version; otherwise creates an artifact of type 'document' and links it to the task. Maps AoA's upsert-issue-document to AoA's artifact subsystem. |
 | `use_skill` | write | skill | Load the full instructions for an AoA skill by key (e.g. 'skill:aoa/brainstorm'). Returns the skill's markdown so your model can follow it. Call query_skills first if you are unsure of the available skill keys. |
