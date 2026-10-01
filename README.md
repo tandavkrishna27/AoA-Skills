@@ -1,9 +1,11 @@
 # AoA Commander Skills
 
-Official Commander skills and instruction files for [Army of Agents](https://armyofagents.com). This repo is the canonical source for:
+Official Commander skills and instruction files for [Army of Agents](https://github.com/tandavkrishna27/Army-of-Agents) ([website](https://armyofagents.org)). This repository is the canonical source for Commander skills and instructions. Related repositories: [Army of Agents](https://github.com/tandavkrishna27/Army-of-Agents), [AoA Marketplace](https://github.com/tandavkrishna27/aoa-marketplace), [AoA Marketplace CDN](https://github.com/tandavkrishna27/aoa-marketplace-cdn), [AoA Skills](https://github.com/tandavkrishna27/AoA-Skills), and [AoA Community](https://github.com/tandavkrishna27/aoa-community).
+
+The repository contains:
 
 - **Commander instruction files** (`commander/`) — AGENTS.md, SOUL.md, TOOLS.md, HEARTBEAT.md
-- **Skills** (`skills/`) — structured workflows for 8 Commander capabilities
+- **Skills** (`skills/`) — structured workflows for 11 Commander capabilities
 - **Model overlays** (`model-overlays/`) — adapter-specific behavioral patches for claude_local, codex_local, opencode_local, gemini_local
 - **Platform configs** — plugin configs for Claude Code, Codex, OpenCode, and Gemini external users
 
@@ -19,6 +21,9 @@ Official Commander skills and instruction files for [Army of Agents](https://arm
 | Investigate | `skill:aoa-curated/aoa-investigate` | An agent run failed, a task is stuck, or an output is wrong and the cause is unclear |
 | Spec | `skill:aoa-curated/aoa-spec` | A decided change needs writing up as one backlog-ready task |
 | Discussion Facilitation | `skill:aoa-curated/aoa-discussion-facilitation` | A discussion thread needs its decisions, tasks, and insights pulled out |
+| Daily Triage | `skill:aoa-curated/aoa-daily-triage` | The user asks what to work on, what needs their attention, what is blocked or at risk, or how a department or the company is doing right now |
+| Review Agent Output | `skill:aoa-curated/aoa-review-agent-output` | The user wants an agent's deliverable checked against the task's acceptance criteria before approval, to decide whether to approve it or send it back |
+| Delegate & Handoff | `skill:aoa-curated/aoa-delegate-handoff` | The user is ready to hand shaped work to an agent: select an agent, write a task spec, set dependencies, and dispatch it |
 
 ## Using skills in AoA
 
@@ -28,23 +33,23 @@ Commander loads skills automatically. Call `use_skill skill:aoa-curated/aoa-brai
 
 ### Claude Code
 ```bash
-cd ~/.claude/plugins && git clone https://github.com/MeteoriteLabs/AoA-Skills.git aoa-skills
+cd ~/.claude/plugins && git clone https://github.com/tandavkrishna27/AoA-Skills.git aoa-skills
 ```
 Requires AoA MCP: `npx @armyofagents/mcp`
 
 ### Codex
 ```bash
-cd ~/.codex/plugins && git clone https://github.com/MeteoriteLabs/AoA-Skills.git aoa-skills
+cd ~/.codex/plugins && git clone https://github.com/tandavkrishna27/AoA-Skills.git aoa-skills
 ```
 
 ### OpenCode
 ```bash
-cd ~/.opencode/plugins && git clone https://github.com/MeteoriteLabs/AoA-Skills.git aoa-skills
+cd ~/.opencode/plugins && git clone https://github.com/tandavkrishna27/AoA-Skills.git aoa-skills
 ```
 
 ### Gemini CLI
 ```bash
-cd ~/.gemini/extensions && git clone https://github.com/MeteoriteLabs/AoA-Skills.git aoa-skills
+cd ~/.gemini/extensions && git clone https://github.com/tandavkrishna27/AoA-Skills.git aoa-skills
 ```
 
 All adapters require AoA MCP: `npx @armyofagents/mcp`

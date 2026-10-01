@@ -2,7 +2,7 @@
 
 <!-- GENERATED — DO NOT EDIT. Run `pnpm gen:tools:md`. Source: packages/shared/src/generated/tools.json -->
 
-The 85 tools below are your complete set, generated from the live tool registry. Only call tools in this list; no other tool names exist.
+The 87 tools below are your complete set, generated from the live tool registry. Only call tools in this list; no other tool names exist.
 
 **Tool naming convention.** Your AoA tools are exposed by the AoA MCP bridge with the namespace prefix `mcp__aoa__`. Inside this file the tools are written without the prefix for readability (e.g. `query_tasks`); when you invoke a tool call the prefixed form (`mcp__aoa__query_tasks`).
 
@@ -85,7 +85,7 @@ The 85 tools below are your complete set, generated from the live tool registry.
 | `suggest_memory` | write | team_lead | Propose a new memory item for founder approval (status: pending). |
 | `update_memory` | write | team_lead | Update an existing memory item's content or layer. |
 | `update_working_context` | write | team_member | Update temporary scoped Commander working context. |
-| `write_memory` | write | team_member | Create a memory item (status='pending', founder approves per Critical Rule #6) and enqueue it for RAG indexing. Use for capturing important knowledge discovered during task execution that should be reviewed and promoted to company memory. For temporary working notes scoped only to this agent, prefer the MCP memory.retain tool with scopeToSelf=true and layer=working. |
+| `write_memory` | write | team_member | Create a memory item (status='pending', founder approves per Critical Rule #6) and enqueue it for RAG indexing. Use for capturing important knowledge discovered during task execution that should be reviewed and promoted to company memory. layer='domain' requires a departmentId; layer='identity' must not have one. For temporary working notes scoped only to this agent, prefer the MCP memory.retain tool with scopeToSelf=true and layer=working. |
 
 ## Discussion Tools
 
@@ -116,6 +116,8 @@ The 85 tools below are your complete set, generated from the live tool registry.
 | Tool | R/W | Min role | What it does |
 |------|-----|----------|--------------|
 | `agent.dispatch` | write | team_member | Dispatch another AoA agent by inserting a wakeup row. Does NOT call heartbeat directly — the dispatcher's drain loop picks it up. Respects hop-count cap (max 3) and dedupes within a single thread context. |
+| `ask_founder` | write | team_member | Compatibility alias for ask_human. Recipient routing still follows the task's responsible human and reviewer. |
+| `ask_human` | write | team_member | Ask the responsible human a durable task question. The same question appears in Commander, Inbox, Task Work, Workspace, and the source Discussion. The run waits briefly, then parks cleanly and continues once answered. |
 | `attach_task_artifact` | write | team_member | Attach your work product to a task as a deliverable: creates a new artifact (document, code, report, etc.) authored by you, links it to the task, and records it in the task's output index. Use this to hand back the result of your work. |
 | `hub.readCurationContext` | read | team_member | Read bounded, redacted hub item context for Steward curation. This returns hub envelopes and source pointers only; it never reads raw source bodies or mutates lifecycle state. |
 | `hub.updateCurationSummary` | write | team_member | Write a bounded Steward curation summary or explanation for a hub item. This only updates display curation metadata and never resolves, archives, approves, rejects, or changes source-side state. |
