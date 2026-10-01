@@ -52,7 +52,7 @@ while IFS= read -r skill; do
   "category": "$SKILL_CATEGORY",
   "tags": ["official"],
   "license": "MIT",
-  "sourceUrl": "https://github.com/MeteoriteLabs/AoA-Skills",
+  "sourceUrl": "https://github.com/tandavkrishna27/AoA-Skills",
   "contentInline": true,
   "runtime": { "entry": "SKILL.md" }
 }

@@ -5,7 +5,7 @@
   "description": "Official Commander skills and instruction files for Army of Agents. Provides structured workflows for sprint planning, team design, idea interrogation, investigation, spec authoring, and discussion facilitation.",
   "author": "MeteoriteLabs",
   "license": "MIT",
-  "sourceUrl": "https://github.com/MeteoriteLabs/AoA-Skills",
+  "sourceUrl": "https://github.com/tandavkrishna27/AoA-Skills",
   "category": "commander",
   "tags": ["official"],
   "skills": "./catalog/skills.json",

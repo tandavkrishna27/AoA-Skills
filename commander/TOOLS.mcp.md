@@ -41,5 +41,5 @@
 | `unlink-task-approval` | write | approval | Unlink an approval from a task. Founders + team leads only. |
 | `update-task` | write | write | Update a task's fields (title, description, status, priority, assignee, etc.) with RBAC checks |
 | `update-task-status` | write | write | Update a task status with permission checks |
-| `upsert-task-document` | write | document | Create or update the task's document (markdown). If the task already has a document artifact, appends a new immutable version; otherwise creates an artifact of type 'document' and links it to the task. Maps Paperclip's upsert-issue-document to AoA's artifact subsystem. |
+| `upsert-task-document` | write | document | Create or update the task's document (markdown). Existing document artifacts receive a new immutable version; otherwise an artifact is created and linked to the task. |
 | `use_skill` | write | skill | Load the full instructions for an AoA skill by key (e.g. 'skill:aoa/brainstorm'). Returns the skill's markdown so your model can follow it. Call query_skills first if you are unsure of the available skill keys. |
